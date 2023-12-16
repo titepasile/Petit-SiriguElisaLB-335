@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
-import { Link } from "expo-router";
 import { useEffect, useState } from "react";
-import { State, TextInput } from "react-native-gesture-handler";
+import { State, TextInput, ScrollView } from "react-native-gesture-handler";
 
 export default function Page() {
   const [state, setState] = useState({
@@ -10,13 +9,15 @@ export default function Page() {
   });
 
   useEffect(() => {
-    fetch('http://api.marketstack.com/v1/eod?access_key=dcfbf46b058adba28731fe0693a93f63&symbols=ALC,LOGN,CFR,ROG,AAPL,MSFT,AMZN,FB,KO,DIS,NFLX,NKE,TSLA,DDAIF,MSFT');
-    
-  })
+    fetch("http://api.marketstack.com/v1/eod?access_key=dcfbf46b058adba28731fe0693a93f63&symbols=ALC,LOGN,CFR,ROG,AAPL,MSFT,AMZN,FB,KO,DIS,NFLX,NKE,TSLA,DDAIF,MSFT")
+      .then(res => res.json())
+      .then(stockData => setState(prev => ({ ...prev, stocks: stockData})))
+      .catch(err => console.error(err));
+  }, []);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.hintText}>Type a company name or stock symbole</Text>
+      <Text style={styles.hintText}>Type a company name or stock symbol:</Text>
 
       <View style={styles.searchSection}>
         <TextInput
@@ -30,11 +31,15 @@ export default function Page() {
         />
       </View>
 
-      <View>
-        <Text style={styles.stockSymbol}>ABB Ltd.</Text>
-        <Text style={styles.stockName}>Asea Brown Boveri</Text>
-        <View style={styles.divider}/>
-      </View>
+      <ScrollView>
+        {state.stocks.map((stock) => (
+          <View key={stock.symbol}>
+            <Text style={styles.stockSymbol}>{stock.symbol}</Text>
+            <Text style={styles.stockName}>{stock.name}</Text>
+            <View style={styles.divider} />
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 }
@@ -45,7 +50,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     color: "#fff",
     fontSize: 20,
-  },  
+  },
   stockName: {
     paddingHorizontal: 10,
     color: "#fff",
@@ -55,7 +60,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "#2f2f2f",
     borderBottomWidth: 1,
   },
-  
+
   container: {
     flex: 1,
     padding: 10,
