@@ -7,7 +7,6 @@ export default function Page() {
   return (
     <View>
         <Text>Diagram {id} </Text>
-        <Link href="/">Stock</Link>
     </View>
   );
 }

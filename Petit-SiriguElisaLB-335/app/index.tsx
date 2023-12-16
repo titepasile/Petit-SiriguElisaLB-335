@@ -6,23 +6,34 @@ app/[user].js matches dynamic paths like /expo or /evanbacon
 */
 
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { Link, router } from 'expo-router';
+import { Link, router } from "expo-router";
 
 export default function Page() {
   return (
     <View style={styles.container}>
+      
       <View style={styles.main}>
-        <Text style={styles.title}>Hello World</Text>
-        <Text style={styles.subtitle}>This is the first page of your app.</Text>
+        <Text style={styles.subtitle}>Your list is empty!</Text>
       </View>
-      <View>
-        <Pressable onPress={ () => router.push({
-          pathname: "/diagrams/[id]",
-          params: {id : 1}
-        })}>
-          <Text>Diagram</Text>
-        </Pressable>
-        <Link href="/search">search</Link>
+
+      <View style={styles.navigation}>
+        <View style={styles.navigationDiagrams}>
+          <Pressable
+            onPress={() =>
+              router.push({
+                pathname: "/diagrams/[id]",
+                params: { id: 1 },
+              })
+            }
+          >
+            <Text style={styles.navigationText}>diagram</Text>
+          </Pressable>
+        </View>
+        <View style={styles.navigationSearch}>
+          <Link href="/search">
+            <Text style={styles.navigationText}>search</Text>
+          </Link>
+        </View>
       </View>
     </View>
   );
@@ -31,21 +42,36 @@ export default function Page() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    padding: 24,
+    padding: 10,
   },
   main: {
     flex: 1,
     justifyContent: "center",
-    maxWidth: 960,
-    marginHorizontal: "auto",
+    maxWidth: "auto",
   },
-  title: {
-    fontSize: 64,
+  /*title: {
+    fontSize: 43,
     fontWeight: "bold",
-  },
+    position: "relative",
+    bottom: 300,
+  },*/
   subtitle: {
-    fontSize: 36,
+    fontSize: 20,
+    textAlign: "center",
     color: "#38434D",
+  },
+  navigation: {},
+  navigationDiagrams: {
+    position: "relative",
+    left: 60,
+  },
+  navigationSearch: {
+    textAlign: "right",
+    position: "relative",
+    bottom: 18,
+    left: 250,
+  },
+  navigationText: {
+    fontSize: 15,
   },
 });

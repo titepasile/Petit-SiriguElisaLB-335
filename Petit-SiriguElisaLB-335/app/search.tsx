@@ -5,7 +5,6 @@ export default function Page() {
   return (
     <View>
         <Text>Hello World</Text>
-        <Link href="/">Stock</Link>
     </View>
   );
 }
