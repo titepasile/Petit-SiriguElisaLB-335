@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 
-export default function Page() {
+export default function DiagramScreen() {
   return (
     <View>
         <Text>Diagram:</Text>

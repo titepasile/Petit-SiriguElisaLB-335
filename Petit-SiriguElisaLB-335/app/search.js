@@ -5,11 +5,15 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
+  Text,
+  navigation,
 } from "react-native";
+import { Link, router } from "expo-router";
 //import { addToWatchlist } from "./context/WatchListContext";
 
-const StockScreen = () => {
-
+const SearchScreen = () => {
+  const [stocks, setStocks] = useState([]);
+  const [searchText, setSearchText] = useState("");
   const fetchStockData = async () => {
     try {
       const response = await fetch(
@@ -42,22 +46,21 @@ const StockScreen = () => {
     stock.symbol.toLowerCase().includes(searchText.toLowerCase())
   );
 
-  // const renderStockItem = ({ item }) => (
-  //   <TouchableOpacity
-  //     onPress={() => {
-  //       addToWatchlist(stock.symbol);
-  //       key={stock,symbol}
-  //       navigation.push('/diagrams/diagram', { id: item.symbol });
-  //     }}
-  //   >
-  //     <View style={styles.stockItem}>
-  //       <Text style={styles.stockSymbol}>{item.symbol}</Text>
-  //       <Text>High: {item.high}</Text>
-  //       <Text>Low: {item.low}</Text>
-  //     </View>
-  //   </TouchableOpacity>
-  // );
-
+  const renderStockItem = ({ item }) => (
+    <TouchableOpacity
+      onPress={() => {
+        //addToWatchlist(item.symbol);
+        router.push('/diagrams/diagram'); {item.symbol};
+      }}
+    >
+      <View style={styles.stockItem}>
+        <Text style={styles.stockSymbol}>{item.symbol}</Text>
+        <Text>High: {item.high}</Text>
+        <Text>Low: {item.low}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+  
   return (
     <View style={styles.container}>
       <TextInput
@@ -95,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StockScreen;
+export default SearchScreen;

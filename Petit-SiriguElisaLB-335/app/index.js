@@ -6,14 +6,15 @@ app/[user].js matches dynamic paths like /expo or /evanbacon
 */
 
 import React from 'react';
-import { StyleSheet, Text, View, Link } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { Link } from "expo-router";
 
 const IndexPage = () => {
   return (
     <View style={styles.container}>
       <View style={styles.main}>
         <Text style={styles.subtitle}>Watchlist</Text>
-        <View style={styles.navigation}>
+        <View style={styles.nav}>
           <View style={styles.navigationIndex}>
             <Link href="/">
               <Text style={styles.navigationText}>index</Text>
@@ -44,53 +45,34 @@ const styles = StyleSheet.create({
   },
   main: {
     flex: 9,
-    justifyContent: "center",
-    maxWidth: "auto",
+    justifyContent: 'center',
+    maxWidth: 'auto',
   },
-  /*title: {
-    fontSize: 43,
-    fontWeight: "bold",
-    position: "relative",
-    bottom: 300,
-  },
-  */
   subtitle: {
     fontSize: 20,
-    textAlign: "center",
-    color: "#38434D",
+    textAlign: 'center',
+    color: '#38434D',
   },
-  navigation: {
+  nav: {
     flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    position: "relative",
+    top: 300,
   },
   navigationIndex: {
-    backgroundColor: "grey",
-    width: 40,
-    height: "auto",
-    position: "relative",
-    left: 80,
+    backgroundColor: 'grey',
+    padding: 10,
+    borderRadius: 5,
   },
   navigationSearch: {
-    textAlign: "right",
-    position: "relative",
-    bottom: 17,
-    left: 250,
+    padding: 10,
+    borderRadius: 5,
   },
   navigationText: {
     fontSize: 15,
-    color: "black",
-  },
-  stockItem: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: 10,
-    borderWidth: 1,
-    borderColor: "lightgray",
-    borderRadius: 5,
-    marginBottom: 8,
-  },
-  deleteButton: {
-    color: "red",
+    color: 'black',
   },
 });
 
