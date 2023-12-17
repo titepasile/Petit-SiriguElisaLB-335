@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, TextInput, StyleSheet, Pressable, TouchableOpacity } from "react-native";
-import { Link, router } from "expo-router";
+import { View, Text, FlatList, TextInput, StyleSheet, TouchableOpacity } from "react-native";
+import { router } from "expo-router";
 import { useWatchlist } from './context/WatchListContext';
 
 const SearchScreen = ({ navigation }) => {
