@@ -44,11 +44,15 @@ const StockScreen = () => {
   );
 
   const renderStockItem = ({ item }) => (
-    <TouchableOpacity onPress={() =>
-      router.push({
-        pathname: "/diagrams/[id]",
-        params: { id: Symbol },
-      })}>
+    <TouchableOpacity
+      onPress={() => {
+        addToWatchlist(item.symbol); 
+        router.push({
+          pathname: "/diagrams/diagram",
+          params: { id: item.symbol },
+        });
+      }}
+    >
       <View style={styles.stockItem}>
         <Text style={styles.stockSymbol}>{item.symbol}</Text>
         <Text>High: {item.high}</Text>
@@ -56,6 +60,7 @@ const StockScreen = () => {
       </View>
     </TouchableOpacity>
   );
+  
 
   return (
     <View style={styles.container}>
