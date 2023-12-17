@@ -11,18 +11,18 @@ import { Link, router } from "expo-router";
 import { addToWatchlist } from "./context/WatchListContext";
 
 const SearchScreen = () => {
-  //Added with chat GPT
-  const [watchlist, setWatchlist] = useState([]);
+  //unfinished
+  //const [watchlist, setWatchlist] = useState([]);
   //---------------------------------
   const [stocks, setStocks] = useState([]);
   const [searchText, setSearchText] = useState("");
 
-  //Added with chat GPT
-  const mockStockData = [
-    { symbol: 'AAPL', high: 150, low: 130 },
-    { symbol: 'GOOGL', high: 2800, low: 2600 },
-    // ... add more stock data as needed
-  ];
+  //unfinished
+  // const mockStockData = [
+  //   { symbol: 'AAPL', high: 150, low: 130 },
+  //   { symbol: 'GOOGL', high: 2800, low: 2600 },
+     // ... add more stock data as needed
+  // ];
   //---------------------------------
 
   const fetchStockData = async () => {
@@ -51,8 +51,8 @@ const SearchScreen = () => {
 
   useEffect(() => {
     fetchStockData();
-    // Chat GPT
-    setStocks(mockStockData);
+    // unfinished
+    //setStocks(mockStockData);
     //-----------------------
   }, []);
 
@@ -63,7 +63,8 @@ const SearchScreen = () => {
   const renderStockItem = ({ item }) => (
       <TouchableOpacity
         onPress={() => {
-          addToWatchlist(item.symbol);
+          //unfinished
+          //addToWatchlist(item.symbol);
           router.push("/diagrams/diagram");
           {
             item.symbol;
@@ -112,9 +113,6 @@ const styles = StyleSheet.create({
   stockSymbol: {
     fontSize: 18,
     fontWeight: "bold",
-  },
-  watchlistContainer: {
-    marginTop: 20,
   }
 });
 

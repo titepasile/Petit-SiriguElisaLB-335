@@ -1,25 +1,32 @@
-import React, { createContext, useState, useContext } from 'react';
+//unfinished
+// import React, { createContext, useContext, useState } from 'react';
 
-const WatchListContext = createContext();
+// const WatchListContext = createContext();
 
-export const WatchListProvider = ({ children }) => {
-  const [watchlist, setWatchlist] = useState([]);
+// export const WatchListProvider = ({ children }) => {
+//   const [watchlist, setWatchlist] = useState([]);
 
-  const addToWatchlist = (symbol) => {
-    setWatchlist((prevWatchlist) => [...prevWatchlist, symbol]);
-  };
+//   const addToWatchlist = (symbol) => {
+//     setWatchlist((prevWatchlist) => [...prevWatchlist, symbol]);
+//   };
 
-  return (
-    <WatchListContext.Provider value={{ watchlist, addToWatchlist }}>
-      {children}
-    </WatchListContext.Provider>
-  );
-};
+//   const removeFromWatchlist = (symbol) => {
+//     setWatchlist((prevWatchlist) =>
+//       prevWatchlist.filter((item) => item !== symbol)
+//     );
+//   };
 
-export const useWatchList = () => {
-  const context = useContext(WatchListContext);
-  if (!context) {
-    throw new Error('useWatchList must be used within a WatchListProvider');
-  }
-  return context;
-};
+//   return (
+//     <WatchListContext.Provider value={{ watchlist, addToWatchlist, removeFromWatchlist }}>
+//       {children}
+//     </WatchListContext.Provider>
+//   );
+// };
+
+// export const useWatchList = () => {
+//   const context = useContext(WatchListContext);
+//   if (!context) {
+//     throw new Error('useWatchList must be used within a WatchListProvider');
+//   }
+//   return context;
+// };
