@@ -21,8 +21,8 @@ const Motion = () => {
 
   return (
     <View style={styles.container}>
-      <View style={[styles.circle, { left: circle1Position.x, top: circle1Position.y }]} />
-      <View style={[styles.circle, { left: circle2Position.x, top: circle2Position.y }]} />
+      <View style={[styles.circle1, { left: circle1Position.x, top: circle1Position.y }]} />
+      <View style={[styles.circle2, { left: circle2Position.x, top: circle2Position.y }]} />
     </View>
   );
 };
@@ -33,11 +33,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  circle: {
+  circle1: {
     width: 50,
     height: 50,
     borderRadius: 25,
     backgroundColor: 'red',
+    position: 'absolute'
+  },
+  circle2: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: 'blue',
     position: 'absolute'
   }
 });

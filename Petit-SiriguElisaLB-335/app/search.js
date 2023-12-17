@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, TextInput, StyleSheet, TouchableOpacity } from "react-native";
-import { router } from "expo-router";
-import { useWatchlist } from './context/WatchListContext';
-
-const SearchScreen = ({ navigation }) => {
-  const { addToWatchlist } = useWatchlist();
-};
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  FlatList,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
+//import { addToWatchlist } from "./context/WatchListContext";
 
 const StockScreen = () => {
-  const [searchText, setSearchText] = useState("");
-  const [stocks, setStocks] = useState([]);
 
   const fetchStockData = async () => {
     try {
@@ -43,24 +42,21 @@ const StockScreen = () => {
     stock.symbol.toLowerCase().includes(searchText.toLowerCase())
   );
 
-  const renderStockItem = ({ item }) => (
-    <TouchableOpacity
-      onPress={() => {
-        addToWatchlist(item.symbol); 
-        router.push({
-          pathname: "/diagrams/diagram",
-          params: { id: item.symbol },
-        });
-      }}
-    >
-      <View style={styles.stockItem}>
-        <Text style={styles.stockSymbol}>{item.symbol}</Text>
-        <Text>High: {item.high}</Text>
-        <Text>Low: {item.low}</Text>
-      </View>
-    </TouchableOpacity>
-  );
-  
+  // const renderStockItem = ({ item }) => (
+  //   <TouchableOpacity
+  //     onPress={() => {
+  //       addToWatchlist(stock.symbol);
+  //       key={stock,symbol}
+  //       navigation.push('/diagrams/diagram', { id: item.symbol });
+  //     }}
+  //   >
+  //     <View style={styles.stockItem}>
+  //       <Text style={styles.stockSymbol}>{item.symbol}</Text>
+  //       <Text>High: {item.high}</Text>
+  //       <Text>Low: {item.low}</Text>
+  //     </View>
+  //   </TouchableOpacity>
+  // );
 
   return (
     <View style={styles.container}>
@@ -78,7 +74,6 @@ const StockScreen = () => {
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

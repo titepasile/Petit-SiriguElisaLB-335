@@ -5,35 +5,14 @@ app/settings/index.js matches /settings
 app/[user].js matches dynamic paths like /expo or /evanbacon
 */
 
-import { DeviceMotion } from 'expo-sensors';
-import { StyleSheet, Text, View, FlatList } from "react-native";
-import { Link } from "expo-router";
-import React from "react";
-import { Watchlist } from './context/WatchListContext';
+import React from 'react';
+import { StyleSheet, Text, View, Link } from 'react-native';
 
-export default function Page() {
-
-    return (
-      <View style={styles.container}>
-        <View style={styles.main}>
-          <Text style={styles.subtitle}>Watchlist</Text>
-          <FlatList
-            data={Watchlist}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                style={styles.stockItem}
-                onPress={() => navigation.navigate("diagram", { id: item })}
-              >
-                <Text>{item}</Text>
-                <TouchableOpacity onPress={() => removeFromWatchlist(item)}>
-                  <Text style={styles.deleteButton}>Delete</Text>
-                </TouchableOpacity>
-              </TouchableOpacity>
-            )}
-            keyExtractor={(item) => item}
-          />
-        </View>
-
+const IndexPage = () => {
+  return (
+    <View style={styles.container}>
+      <View style={styles.main}>
+        <Text style={styles.subtitle}>Watchlist</Text>
         <View style={styles.navigation}>
           <View style={styles.navigationIndex}>
             <Link href="/">
@@ -54,8 +33,9 @@ export default function Page() {
           </View>
         </View>
       </View>
-    );
-}
+    </View>
+  );
+}; 
 
 const styles = StyleSheet.create({
   container: {
@@ -113,3 +93,5 @@ const styles = StyleSheet.create({
     color: "red",
   },
 });
+
+export default IndexPage; 
