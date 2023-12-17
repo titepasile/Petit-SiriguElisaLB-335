@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, TextInput, StyleSheet, Pressable, TouchableOpacity } from "react-native";
 import { Link, router } from "expo-router";
+import { useWatchlist } from './context/WatchListContext';
 
 const StockScreen = () => {
   const [searchText, setSearchText] = useState("");

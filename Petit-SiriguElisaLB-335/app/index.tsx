@@ -5,15 +5,28 @@ app/settings/index.js matches /settings
 app/[user].js matches dynamic paths like /expo or /evanbacon
 */
 
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import { Link, router } from "expo-router";
+import { StyleSheet, Text, View } from "react-native";
+import { Link } from "expo-router";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import search from "./search";
+import diagram from "./diagrams/diagram";
+import { WatchlistProvider } from "./context/WatchListContext";
 
-export default function Page() {
+const Stack = createNativeStackNavigator();
+
+const Page = () => {
   return (
-    <View style={styles.container}>
-      <View style={styles.main}>
-        <Text style={styles.subtitle}>Your list is empty!</Text>
-      </View>
+    <View>
+      <NavigationContainer>
+        <WatchlistProvider>
+          <Stack.Navigator initialRouteName="SearchScreen">
+            <Stack.Screen name="search" component={search} />
+            <Stack.Screen name="diagram" component={diagram} />
+          </Stack.Navigator>
+        </WatchlistProvider>
+      </NavigationContainer>
 
       <View style={styles.navigation}>
         <View style={styles.navigationIndex}>
@@ -21,6 +34,7 @@ export default function Page() {
             <Text style={styles.navigationText}>index</Text>
           </Link>
         </View>
+
         <View style={styles.navigationSearch}>
           <Link href="/search">
             <Text style={styles.navigationText}>search</Text>
@@ -29,7 +43,9 @@ export default function Page() {
       </View>
     </View>
   );
-}
+};
+
+export default Page;
 
 const styles = StyleSheet.create({
   container: {

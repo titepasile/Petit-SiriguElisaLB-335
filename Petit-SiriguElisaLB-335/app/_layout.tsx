@@ -5,7 +5,7 @@ const RootLayout = () => {
   return (
     <Stack>
       <Stack.Screen name="index"/>
-      <Stack.Screen name="diagrams/[id]"/>
+      <Stack.Screen name="diagrams/diagram"/>
     </Stack>
   );
 };
