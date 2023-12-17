@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, TextInput, StyleSheet, Pressable, TouchableOpacity } from "react-native";
-import { Link, router } from "expo-router";
+import { View, Text, FlatList, TextInput, StyleSheet, TouchableOpacity } from "react-native";
+import { router } from "expo-router";
+import { useWatchlist } from './context/WatchListContext';
+
+const SearchScreen = ({ navigation }) => {
+  const { addToWatchlist } = useWatchlist();
+};
 
 const StockScreen = () => {
   const [searchText, setSearchText] = useState("");
@@ -9,7 +14,7 @@ const StockScreen = () => {
   const fetchStockData = async () => {
     try {
       const response = await fetch(
-        "http://api.marketstack.com/v1/eod?access_key=dcfbf46b058adba28731fe0693a93f63&symbols=ALC,LOGN,CFR,ROG,AAPL,MSFT,AMZN,FB,KO,DIS,NFLX,NKE,TSLA,DDAIF,MSFT"
+        "http://api.marketstack.com/v1/eod?access_key=b3fed8d4fda4a511151c7d628b94ce4c&symbols=ALC,LOGN,CFR,ROG,AAPL,MSFT,AMZN,FB,KO,DIS,NFLX,NKE,TSLA,DDAIF,MSFT"
       );
       const { data } = await response.json();
 
@@ -39,11 +44,15 @@ const StockScreen = () => {
   );
 
   const renderStockItem = ({ item }) => (
-    <TouchableOpacity onPress={() =>
-      router.push({
-        pathname: "/diagrams/[id]",
-        params: { id: Symbol },
-      })}>
+    <TouchableOpacity
+      onPress={() => {
+        addToWatchlist(item.symbol); 
+        router.push({
+          pathname: "/diagrams/diagram",
+          params: { id: item.symbol },
+        });
+      }}
+    >
       <View style={styles.stockItem}>
         <Text style={styles.stockSymbol}>{item.symbol}</Text>
         <Text>High: {item.high}</Text>
@@ -51,6 +60,7 @@ const StockScreen = () => {
       </View>
     </TouchableOpacity>
   );
+  
 
   return (
     <View style={styles.container}>
