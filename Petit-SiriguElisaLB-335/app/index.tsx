@@ -11,23 +11,15 @@ import { Link, router } from "expo-router";
 export default function Page() {
   return (
     <View style={styles.container}>
-      
       <View style={styles.main}>
         <Text style={styles.subtitle}>Your list is empty!</Text>
       </View>
 
       <View style={styles.navigation}>
-        <View style={styles.navigationDiagrams}>
-          <Pressable
-            onPress={() =>
-              router.push({
-                pathname: "/diagrams/[id]",
-                params: { id: 1 },
-              })
-            }
-          >
-            <Text style={styles.navigationText}>diagram</Text>
-          </Pressable>
+        <View style={styles.navigationIndex}>
+          <Link href="/">
+            <Text style={styles.navigationText}>index</Text>
+          </Link>
         </View>
         <View style={styles.navigationSearch}>
           <Link href="/search">
@@ -61,9 +53,12 @@ const styles = StyleSheet.create({
     color: "#38434D",
   },
   navigation: {},
-  navigationDiagrams: {
+  navigationIndex: {
     position: "relative",
     left: 60,
+    backgroundColor: "grey",
+    width: 40,
+    height: "auto",
   },
   navigationSearch: {
     textAlign: "right",
