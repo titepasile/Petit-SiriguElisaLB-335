@@ -3,6 +3,10 @@ import { View, Text, FlatList, TextInput, StyleSheet, Pressable, TouchableOpacit
 import { Link, router } from "expo-router";
 import { useWatchlist } from './context/WatchListContext';
 
+const SearchScreen = ({ navigation }) => {
+  const { addToWatchlist } = useWatchlist();
+};
+
 const StockScreen = () => {
   const [searchText, setSearchText] = useState("");
   const [stocks, setStocks] = useState([]);
