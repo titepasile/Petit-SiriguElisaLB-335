@@ -9,7 +9,7 @@ const StockScreen = () => {
   const fetchStockData = async () => {
     try {
       const response = await fetch(
-        "http://api.marketstack.com/v1/eod?access_key=dcfbf46b058adba28731fe0693a93f63&symbols=ALC,LOGN,CFR,ROG,AAPL,MSFT,AMZN,FB,KO,DIS,NFLX,NKE,TSLA,DDAIF,MSFT"
+        "http://api.marketstack.com/v1/eod?access_key=b3fed8d4fda4a511151c7d628b94ce4c&symbols=ALC,LOGN,CFR,ROG,AAPL,MSFT,AMZN,FB,KO,DIS,NFLX,NKE,TSLA,DDAIF,MSFT"
       );
       const { data } = await response.json();
 

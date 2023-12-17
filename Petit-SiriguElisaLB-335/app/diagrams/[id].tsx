@@ -6,7 +6,8 @@ export default function Page() {
 
   return (
     <View>
-        <Text>Diagram {id} </Text>
+        <Text>Diagram:</Text>
+        <Text>Coming soon</Text>
     </View>
   );
 }
