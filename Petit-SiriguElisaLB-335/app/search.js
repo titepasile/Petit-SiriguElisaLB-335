@@ -6,14 +6,25 @@ import {
   StyleSheet,
   TouchableOpacity,
   Text,
-  navigation,
 } from "react-native";
 import { Link, router } from "expo-router";
-//import { addToWatchlist } from "./context/WatchListContext";
+import { addToWatchlist } from "./context/WatchListContext";
 
 const SearchScreen = () => {
+  //unfinished
+  //const [watchlist, setWatchlist] = useState([]);
+  //---------------------------------
   const [stocks, setStocks] = useState([]);
   const [searchText, setSearchText] = useState("");
+
+  //unfinished
+  // const mockStockData = [
+  //   { symbol: 'AAPL', high: 150, low: 130 },
+  //   { symbol: 'GOOGL', high: 2800, low: 2600 },
+     // ... add more stock data as needed
+  // ];
+  //---------------------------------
+
   const fetchStockData = async () => {
     try {
       const response = await fetch(
@@ -40,6 +51,9 @@ const SearchScreen = () => {
 
   useEffect(() => {
     fetchStockData();
+    // unfinished
+    //setStocks(mockStockData);
+    //-----------------------
   }, []);
 
   const filteredStocks = stocks.filter((stock) =>
@@ -47,18 +61,22 @@ const SearchScreen = () => {
   );
 
   const renderStockItem = ({ item }) => (
-    <TouchableOpacity
-      onPress={() => {
-        //addToWatchlist(item.symbol);
-        router.push('/diagrams/diagram'); {item.symbol};
-      }}
-    >
-      <View style={styles.stockItem}>
-        <Text style={styles.stockSymbol}>{item.symbol}</Text>
-        <Text>High: {item.high}</Text>
-        <Text>Low: {item.low}</Text>
-      </View>
-    </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          //unfinished
+          //addToWatchlist(item.symbol);
+          router.push("/diagrams/diagram");
+          {
+            item.symbol;
+          }
+        }}
+      >
+        <View style={styles.stockItem}>
+          <Text style={styles.stockSymbol}>{item.symbol}</Text>
+          <Text>High: {item.high}</Text>
+          <Text>Low: {item.low}</Text>
+        </View>
+      </TouchableOpacity>
   );
   
   return (
@@ -95,7 +113,7 @@ const styles = StyleSheet.create({
   stockSymbol: {
     fontSize: 18,
     fontWeight: "bold",
-  },
+  }
 });
 
 export default SearchScreen;
