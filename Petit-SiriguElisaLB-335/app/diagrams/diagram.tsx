@@ -1,9 +1,6 @@
-import { StyleSheet, Text, View } from "react-native";
-import { Link, useLocalSearchParams } from 'expo-router';
+import { Text, View } from "react-native";
 
-export default function Page() {
-  const {id} = useLocalSearchParams<{id: string}>();
-
+export default function DiagramScreen() {
   return (
     <View>
         <Text>Diagram:</Text>

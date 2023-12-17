@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, TextInput, StyleSheet, TouchableOpacity } from "react-native";
-import { router } from "expo-router";
-import { useWatchlist } from './context/WatchListContext';
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  FlatList,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  navigation,
+} from "react-native";
+import { Link, router } from "expo-router";
+//import { addToWatchlist } from "./context/WatchListContext";
 
-const SearchScreen = ({ navigation }) => {
-  const { addToWatchlist } = useWatchlist();
-};
-
-const StockScreen = () => {
-  const [searchText, setSearchText] = useState("");
+const SearchScreen = () => {
   const [stocks, setStocks] = useState([]);
-
+  const [searchText, setSearchText] = useState("");
   const fetchStockData = async () => {
     try {
       const response = await fetch(
@@ -46,11 +49,8 @@ const StockScreen = () => {
   const renderStockItem = ({ item }) => (
     <TouchableOpacity
       onPress={() => {
-        addToWatchlist(item.symbol); 
-        router.push({
-          pathname: "/diagrams/diagram",
-          params: { id: item.symbol },
-        });
+        //addToWatchlist(item.symbol);
+        router.push('/diagrams/diagram'); {item.symbol};
       }}
     >
       <View style={styles.stockItem}>
@@ -61,7 +61,6 @@ const StockScreen = () => {
     </TouchableOpacity>
   );
   
-
   return (
     <View style={styles.container}>
       <TextInput
@@ -78,7 +77,6 @@ const StockScreen = () => {
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -100,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StockScreen;
+export default SearchScreen;
