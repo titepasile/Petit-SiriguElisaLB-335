@@ -5,6 +5,7 @@ app/settings/index.js matches /settings
 app/[user].js matches dynamic paths like /expo or /evanbacon
 */
 
+import { DeviceMotion } from 'expo-sensors';
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import { Link } from "expo-router";
 import React from "react";
@@ -37,6 +38,12 @@ export default function Page() {
           <View style={styles.navigationIndex}>
             <Link href="/">
               <Text style={styles.navigationText}>index</Text>
+            </Link>
+          </View>
+
+          <View style={styles.navigationMotion}>
+            <Link href="/motion">
+              <Text style={styles.navigationText}>motion</Text>
             </Link>
           </View>
 
